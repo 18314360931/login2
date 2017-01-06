@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 命名空间 -->
+<mapper namespace="dao.AdminDao">
+	<!-- id在(映射)配置文件里唯一 -->
+	<insert id="save" parameterType="entity.Admin">
+		INSERT INTO admin
+		VALUES(#{id},#{name},#{age},#{code},#{password})
+	</insert>
+	<!-- id:要求唯一) resultType:返回结果类型) parameterType:参数类型 -->
+	<select id="findAll" resultType="entity.Admin">
+		SELECT * FROM admin
+	</select>
+	<select id="findByCode" parameterType="String" resultType="entity.Admin">
+		SELECT *
+		FROM admin WHERE code=#{code1}
+	</select>
+	<update id="modify" parameterType="entity.Admin">
+		UPDATE admin SET
+		name=#{name},age=#{age} WHERE id=#{id}
+	</update>
+	<delete id="delete" parameterType="String">
+		DELETE FROM admin WHERE
+		code=#{code1}
+	</delete>
+
+
+
+</mapper>
